@@ -74,7 +74,7 @@ function App() {
     {
       week: "Personal Interview",
       summary: "Mock interview preparation and experience",
-      link: "https://youtube.com/shorts/example2",
+      link: "https://youtu.be/O2G-yvL5xRM",
       siteLink: "https://www.notion.so/personal-interview",
       pdf: "/pdf/personalinterview.pdf"
     },
