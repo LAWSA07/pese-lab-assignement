@@ -78,7 +78,29 @@ I am excited about the opportunities ahead and look forward to contributing my s
       week: "Assignment",
       summary: "Movie Review- Schindler's List",
       link: "https://youtu.be/B9ZWUc4vAIA?si=fipVmf516njwLyu6",
-      siteLink: "https://www.notion.so/movie-review-1b56d660abad8072be5bfc15cf85717e?pvs=4"
+      siteLink: "https://www.notion.so/movie-review-1b56d660abad8072be5bfc15cf85717e?pvs=4",
+      pdf: "/pdf/assignment.pdf"
+    },
+    {
+      week: "Group Discussion",
+      summary: "Group discussion on current tech trends",
+      link: "https://youtu.be/tx-CRdoCvxU",
+      siteLink: "https://www.notion.so/group-discussion",
+      pdf: "/pdf/groupdiscussion.pdf"
+    },
+    {
+      week: "Personal Interview",
+      summary: "Mock interview preparation and experience",
+      link: "https://youtube.com/shorts/example2",
+      siteLink: "https://www.notion.so/personal-interview",
+      pdf: "/pdf/personalinterview.pdf"
+    },
+    {
+      week: "GOOD BYE",
+      summary: "Final reflections and future goals",
+      link: "https://youtu.be/SyKx3Kzeh64",
+      siteLink: "https://www.notion.so/goodbye",
+      pdf: "/pdf/goodbye.pdf"
     }
   ];
 
