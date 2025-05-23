@@ -2,6 +2,16 @@ import React, { useState } from 'react';
 // Update the import line at the top
 import { Github, Linkedin, Mail, MapPin, Phone, Youtube, Globe, FileText } from 'lucide-react';
 
+// Add interface for weekly logs at the top of the file
+interface WeeklyLog {
+  week: string;
+  summary: string;
+  link: string;
+  siteLink: string;
+  pdf?: string;
+  details?: string[];
+}
+
 function App() {
   const [activeSection, setActiveSection] = useState('about');
 
@@ -26,27 +36,10 @@ function App() {
     }
   ];
 
-  const weeklyLogs = [
+  const weeklyLogs: WeeklyLog[] = [
     {
       week: "Week 1",
       summary: "Self introduction",
-      details: [
-        `Hello everyone, my name is Himanshu Singh Aswal. I am currently in my prefinal year, pursuing a BTech in Computer Science and Engineering at Graphic Era Hill University, and I completed my schooling at DPSG, Dehradun. I have always been passionate about technology, and my ultimate aim is to build a career in software development.
-
-My academic journey has been quite enriching. I had the opportunity to work on a research paper titled "Neuroscience of Virtual Reality," which was recognized by IEEE. This project not only deepened my understanding of how technology and human cognition intersect but also fueled my passion for innovation.
-
-I have been actively involved in several projects, including:
-
-- **Deepfake Detection Using CNN:** A project aimed at developing robust systems to detect manipulated media.
-- **Job Tracking Application:** Designed to streamline and optimize job tracking processes.
-- **Music Transformer:** A creative endeavor that explores the fusion of music with advanced algorithms.
-
-Additionally, I have enhanced my technical skills by earning a certificate in Advanced Machine Learning from Coursera, taught by Andrew Ng. This training has equipped me with cutting-edge techniques that I am eager to apply in real-world scenarios.
-
-Outside of academics and technical pursuits, I am an avid football player. Playing football not only keeps me physically active but also teaches me the values of teamwork, strategy, and perseverance.
-
-I am excited about the opportunities ahead and look forward to contributing my skills and enthusiasm to the field of software development. Thank you for your time.`
-      ],
       link: "https://youtube.com/shorts/d-eHyNb5luk?feature=share",
       siteLink: "https://www.notion.so/SELF-INTRODUCTION-1b56d660abad80d2b95deeddf472892a?pvs=4"
     },
@@ -105,22 +98,25 @@ I am excited about the opportunities ahead and look forward to contributing my s
   ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#CFFFDC' }}>
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full shadow-sm z-50" style={{ backgroundColor: '#2E6F40' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex space-x-8">
+    <div className="min-h-screen bg-[#f5f5f5]">
+      {/* Modern Minimalist Navigation */}
+      <nav className="fixed top-0 w-full backdrop-blur-sm bg-white/75 z-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            <span className="text-2xl font-bold tracking-tighter text-gray-900" style={{ fontFamily: "'Syne', sans-serif" }}>HIMANSHU</span>
+            <div className="flex space-x-12">
               {['about', 'projects', 'weekly'].map((section) => (
                 <button
                   key={section}
                   onClick={() => setActiveSection(section)}
-                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${activeSection === section
-                      ? 'border-[#CFFFDC] text-white'
-                      : 'border-transparent text-[#CFFFDC] hover:border-[#68BA7F] hover:text-[#CFFFDC]'
-                    }`}
+                  className={`inline-flex items-center px-1 pt-1 text-sm tracking-widest transition-all duration-300 ${
+                    activeSection === section
+                      ? 'text-black border-b-2 border-black font-medium'
+                      : 'text-gray-500 hover:text-black font-medium'
+                  }`}
+                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                  {section.toUpperCase()}
                 </button>
               ))}
             </div>
@@ -129,82 +125,86 @@ I am excited about the opportunities ahead and look forward to contributing my s
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
         {/* About Section */}
         <section className={`py-12 ${activeSection === 'about' ? 'block' : 'hidden'}`}>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Profile */}
-            <div className="lg:col-span-1">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-[#68BA7F]">
-                <div className="text-center">
+            <div className="lg:col-span-4">
+              <div className="space-y-8">
+                <div className="aspect-square relative overflow-hidden rounded-2xl">
                   <img
-                    className="h-32 w-32 rounded-full mx-auto ring-4 ring-[#68BA7F]"
+                    className="object-cover w-full h-full"
                     src="/img/potr.jpg"
                     alt="Profile"
                   />
-                  <h2 className="mt-4 text-xl font-bold text-[#253D2C]">Himanshu Singh Aswal</h2>
-                  <p className="text-sm text-[#2E6F40]">Machine Learning Engineer</p>
                 </div>
-
-                <div className="mt-6 space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <Phone className="h-5 w-5 text-[#68BA7F]" />
-                    <span className="text-sm text-[#253D2C]">+91-781-794-9407</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <Mail className="h-5 w-5 text-[#68BA7F]" />
-                    <span className="text-sm text-[#253D2C]">aswalh0707@gmail.com</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <Linkedin className="h-5 w-5 text-[#68BA7F]" />
-                    <span className="text-sm text-[#253D2C]">himanshu-singh-aswal</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <MapPin className="h-5 w-5 text-[#68BA7F]" />
-                    <span className="text-sm text-[#253D2C]">Dehradun, India</span>
+                <div className="space-y-4">
+                  <h2 className="text-3xl font-bold tracking-tight text-gray-900" style={{ fontFamily: "'Syne', sans-serif" }}>Himanshu Singh Aswal</h2>
+                  <p className="text-lg font-medium text-gray-500">Machine Learning Engineer</p>
+                  <div className="pt-4 space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <Phone className="h-5 w-5 text-gray-400" />
+                      <span className="text-base text-gray-600">+91-781-794-9407</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <Mail className="h-5 w-5 text-gray-400" />
+                      <span className="text-base text-gray-600">aswalh0707@gmail.com</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <Linkedin className="h-5 w-5 text-gray-400" />
+                      <span className="text-base text-gray-600">himanshu-singh-aswal</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <MapPin className="h-5 w-5 text-gray-400" />
+                      <span className="text-base text-gray-600">Dehradun, India</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Summary and Education */}
-            <div className="lg:col-span-2 space-y-8">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-[#68BA7F]">
-                <h3 className="text-lg font-semibold text-[#253D2C]">About Me</h3>
-                <p className="mt-4 text-[#2E6F40]">
-                  Machine Learning Engineer with 2+ years of hands-on experience in developing AI solutions, published researcher in computer vision, and winner of multiple hackathons. Specialized in deep learning applications with expertise in TensorFlow, computer vision, and full-stack development.
-                </p>
-              </div>
-              <div className="flex items-center space-x-3">
-                <FileText className="h-5 w-5 text-[#68BA7F]" />
-                <a
-                  href="/pdf/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-[#253D2C] hover:underline"
-                >
-                  View My Resume
-                </a>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-[#68BA7F]">
-                <h3 className="text-lg font-semibold text-[#253D2C]">Education</h3>
-                <div className="mt-4">
-                  <h4 className="font-medium text-[#253D2C]">Graphic Era Hill University (2022–2026)</h4>
-                  <p className="text-sm text-[#2E6F40]">B.E. Computer Science — CGPA: 8.11/10</p>
-                  <p className="mt-2 text-sm text-[#2E6F40]">
-                    Relevant Coursework: Machine Learning, Deep Learning, Computer Vision, Data Structures & Algorithms, DBMS, Cloud Computing
+            <div className="lg:col-span-8 space-y-12">
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-2xl font-bold tracking-tight text-gray-900" style={{ fontFamily: "'Syne', sans-serif" }}>About Me</h3>
+                  <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                    Machine Learning Engineer with 2+ years of hands-on experience in developing AI solutions, published researcher in computer vision, and winner of multiple hackathons. Specialized in deep learning applications with expertise in TensorFlow, computer vision, and full-stack development.
                   </p>
                 </div>
-              </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-[#68BA7F]">
-                <h3 className="text-lg font-semibold text-[#253D2C]">Publications</h3>
-                <div className="mt-4">
-                  <h4 className="font-medium text-[#253D2C]">"Neuroscience of Virtual Reality" (IEEE, 2022)</h4>
-                  <p className="mt-2 text-sm text-[#2E6F40]">
-                    Developed a novel methodology for analyzing neural correlates in VR environments using EEG and machine learning techniques.
-                  </p>
+                <div className="flex items-center space-x-3">
+                  <FileText className="h-5 w-5 text-gray-400" />
+                  <a
+                    href="/pdf/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base text-gray-600 hover:text-black transition-colors font-medium"
+                  >
+                    View My Resume
+                  </a>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-bold tracking-tight text-gray-900" style={{ fontFamily: "'Syne', sans-serif" }}>Education</h3>
+                  <div className="mt-4 space-y-2">
+                    <h4 className="text-xl font-medium text-gray-900">Graphic Era Hill University (2022–2026)</h4>
+                    <p className="text-lg text-gray-500">B.E. Computer Science — CGPA: 8.11/10</p>
+                    <p className="text-base text-gray-600">
+                      Relevant Coursework: Machine Learning, Deep Learning, Computer Vision, Data Structures & Algorithms, DBMS, Cloud Computing
+                    </p>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-bold tracking-tight text-gray-900" style={{ fontFamily: "'Syne', sans-serif" }}>Publications</h3>
+                  <div className="mt-4">
+                    <h4 className="text-xl font-medium text-gray-900">"Neuroscience of Virtual Reality" (IEEE, 2022)</h4>
+                    <p className="mt-2 text-base text-gray-600">
+                      Developed a novel methodology for analyzing neural correlates in VR environments using EEG and machine learning techniques.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -213,71 +213,97 @@ I am excited about the opportunities ahead and look forward to contributing my s
 
         {/* Projects Section */}
         <section className={`py-12 ${activeSection === 'projects' ? 'block' : 'hidden'}`}>
-          <div className="space-y-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-[#68BA7F]">
-              <h3 className="text-lg font-semibold text-[#253D2C]">Technical Projects</h3>
-              <div className="mt-6 grid grid-cols-1 gap-6">
+          <div className="space-y-16">
+            {/* Technical Projects */}
+            <div>
+              <h3 className="text-3xl font-bold tracking-tight text-gray-900 mb-8" style={{ fontFamily: "'Syne', sans-serif" }}>Technical Projects</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projects.map((project, index) => (
-                  <div key={index} className="border-l-4 border-[#2E6F40] pl-4 py-2">
-                    <h4 className="font-medium text-[#253D2C]">{project.title}</h4>
-                    <p className="mt-2 text-sm text-[#2E6F40]">{project.description}</p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {project.tech.map((t, i) => (
-                        <span key={i} className="px-2 py-1 text-xs font-medium bg-[#CFFFDC] text-[#253D2C] rounded">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {project.stack.map((s, i) => (
-                        <span key={i} className="px-2 py-1 text-xs font-medium bg-[#68BA7F] text-white rounded">
-                          {s}
-                        </span>
-                      ))}
+                  <div key={index} className="group">
+                    <div className="bg-white p-8 rounded-2xl transition-all duration-300 hover:shadow-xl">
+                      <h4 className="text-2xl font-bold tracking-tight text-gray-900 mb-4" style={{ fontFamily: "'Syne', sans-serif" }}>{project.title}</h4>
+                      <p className="text-base text-gray-600 mb-6 leading-relaxed">
+                        {project.description}
+                      </p>
+                      <div className="space-y-4">
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.map((t, i) => (
+                            <span 
+                              key={i} 
+                              className="px-4 py-1.5 text-sm font-medium text-gray-600 bg-gray-100 rounded-full"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {project.stack.map((s, i) => (
+                            <span 
+                              key={i} 
+                              className="px-4 py-1.5 text-sm font-medium text-gray-500 border-2 border-gray-200 rounded-full"
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-[#68BA7F]">
-              <h3 className="text-lg font-semibold text-[#253D2C]">Technical Skills</h3>
-              <div className="mt-6 space-y-4">
+            {/* Technical Skills */}
+            <div>
+              <h3 className="text-3xl font-bold tracking-tight text-gray-900 mb-8" style={{ fontFamily: "'Syne', sans-serif" }}>Technical Skills</h3>
+              <div className="space-y-8">
                 <div>
-                  <h4 className="font-medium text-[#253D2C]">Languages</h4>
-                  <div className="mt-2 flex flex-wrap gap-2">
+                  <h4 className="text-2xl font-bold tracking-tight text-gray-900 mb-4" style={{ fontFamily: "'Syne', sans-serif" }}>Languages</h4>
+                  <div className="flex flex-wrap gap-2">
                     {['Python', 'JavaScript', 'C/C++', 'SQL', 'Java', 'TypeScript'].map((skill, index) => (
-                      <span key={index} className="px-2 py-1 text-xs font-medium bg-[#68BA7F] text-white rounded">
+                      <span 
+                        key={index} 
+                        className="px-4 py-2 text-base font-medium text-gray-600 bg-gray-100 rounded-full"
+                      >
                         {skill}
                       </span>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-medium text-[#253D2C]">Machine Learning</h4>
-                  <div className="mt-2 flex flex-wrap gap-2">
+                  <h4 className="text-2xl font-bold tracking-tight text-gray-900 mb-4" style={{ fontFamily: "'Syne', sans-serif" }}>Machine Learning</h4>
+                  <div className="flex flex-wrap gap-2">
                     {['TensorFlow', 'PyTorch', 'OpenCV', 'scikit-learn', 'Pandas', 'Deep Learning', 'Computer Vision', 'NLP'].map((skill, index) => (
-                      <span key={index} className="px-2 py-1 text-xs font-medium bg-[#68BA7F] text-white rounded">
+                      <span 
+                        key={index} 
+                        className="px-4 py-2 text-base font-medium text-gray-600 bg-gray-100 rounded-full"
+                      >
                         {skill}
                       </span>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-medium text-[#253D2C]">Web Development</h4>
-                  <div className="mt-2 flex flex-wrap gap-2">
+                  <h4 className="text-2xl font-bold tracking-tight text-gray-900 mb-4" style={{ fontFamily: "'Syne', sans-serif" }}>Web Development</h4>
+                  <div className="flex flex-wrap gap-2">
                     {['React', 'Node.js', 'Flask', 'REST APIs', 'GraphQL'].map((skill, index) => (
-                      <span key={index} className="px-2 py-1 text-xs font-medium bg-[#68BA7F] text-white rounded">
+                      <span 
+                        key={index} 
+                        className="px-4 py-2 text-base font-medium text-gray-600 bg-gray-100 rounded-full"
+                      >
                         {skill}
                       </span>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-medium text-[#253D2C]">Tools</h4>
-                  <div className="mt-2 flex flex-wrap gap-2">
+                  <h4 className="text-2xl font-bold tracking-tight text-gray-900 mb-4" style={{ fontFamily: "'Syne', sans-serif" }}>Tools</h4>
+                  <div className="flex flex-wrap gap-2">
                     {['Docker', 'Git', 'AWS', 'MongoDB', 'MySQL', 'Linux'].map((skill, index) => (
-                      <span key={index} className="px-2 py-1 text-xs font-medium bg-[#68BA7F] text-white rounded">
+                      <span 
+                        key={index} 
+                        className="px-4 py-2 text-base font-medium text-gray-600 bg-gray-100 rounded-full"
+                      >
                         {skill}
                       </span>
                     ))}
@@ -286,12 +312,13 @@ I am excited about the opportunities ahead and look forward to contributing my s
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-[#68BA7F]">
-              <h3 className="text-lg font-semibold text-[#253D2C]">Achievements</h3>
-              <ul className="mt-4 space-y-3 list-disc list-inside text-[#2E6F40]">
-                <li>1st Place - CodeFest 2022 AI Challenge (Among 150+ teams)</li>
-                <li>Top 5% - Google Kick Start Programming Competition 2023</li>
-                <li>Grant Recipient - NVIDIA Academic Hardware Grant (2023)</li>
+            {/* Achievements */}
+            <div>
+              <h3 className="text-3xl font-bold tracking-tight text-gray-900 mb-8" style={{ fontFamily: "'Syne', sans-serif" }}>Achievements</h3>
+              <ul className="space-y-4 list-disc list-inside text-lg text-gray-600">
+                <li className="font-medium">1st Place - CodeFest 2022 AI Challenge (Among 150+ teams)</li>
+                <li className="font-medium">Top 5% - Google Kick Start Programming Competition 2023</li>
+                <li className="font-medium">Grant Recipient - NVIDIA Academic Hardware Grant (2023)</li>
               </ul>
             </div>
           </div>
@@ -299,54 +326,56 @@ I am excited about the opportunities ahead and look forward to contributing my s
 
         {/* Weekly Log Section */}
         <section className={`py-12 ${activeSection === 'weekly' ? 'block' : 'hidden'}`}>
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-[#68BA7F]">
-            <h3 className="text-lg font-semibold text-[#253D2C]">Weekly Progress Log</h3>
-            <div className="mt-6 space-y-6">
+          <div className="space-y-12">
+            <h3 className="text-3xl font-bold tracking-tight text-gray-900" style={{ fontFamily: "'Syne', sans-serif" }}>Weekly Progress Log</h3>
+            <div className="grid grid-cols-1 gap-8">
               {weeklyLogs.map((log, index) => (
-                <div key={index} className="border-b border-[#CFFFDC] pb-6 last:border-0 last:pb-0">
-                  <h4 className="font-medium text-[#253D2C]">{log.week}</h4>
-                  <p className="mt-2 text-[#2E6F40]">{log.summary}</p>
-                  {log.details && (
-                    <div className="mt-2 text-sm text-[#2E6F40]">
-                      {Array.isArray(log.details)
-                        ? log.details.map((detail, i) => <p key={i}>{detail}</p>)
-                        : <p>{log.details}</p>}
+                <div key={index} className="group">
+                  <div className="bg-white p-8 rounded-2xl transition-all duration-300 hover:shadow-xl">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between">
+                      <div className="flex-1">
+                        <h4 className="text-2xl font-bold tracking-tight text-gray-900" style={{ fontFamily: "'Syne', sans-serif" }}>{log.week}</h4>
+                        <p className="mt-2 text-lg text-gray-600">{log.summary}</p>
+                        {log.details && (
+                          <div className="mt-4 prose prose-lg max-w-none text-gray-600">
+                            {log.details.map((detail, i) => (
+                              <p key={i} className="mb-2">{detail}</p>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      <div className="mt-6 md:mt-0 md:ml-8 flex flex-col space-y-4">
+                        <a
+                          href={log.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-base font-medium text-gray-600 hover:text-black transition-colors"
+                        >
+                          <Youtube className="h-5 w-5 mr-2" />
+                          Watch Progress Video
+                        </a>
+                        {log.siteLink && (
+                          <a
+                            href={log.siteLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-base font-medium text-gray-600 hover:text-black transition-colors"
+                          >
+                            <Globe className="h-5 w-5 mr-2" />
+                            Visit Site
+                          </a>
+                        )}
+                        <a
+                          href={log.pdf || `/pdf/${log.week.replace(/\s+/g, '').toLowerCase()}.pdf`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-base font-medium text-gray-600 hover:text-black transition-colors"
+                        >
+                          <FileText className="h-5 w-5 mr-2" />
+                          View PDF
+                        </a>
+                      </div>
                     </div>
-                  )}
-                  {/* Watch Progress Video link */}
-                  <a
-                    href={log.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 inline-flex items-center text-sm text-[#2E6F40] hover:text-[#68BA7F]"
-                  >
-                    <Youtube className="h-4 w-4 mr-1" />
-                    Watch Progress Video
-                  </a>
-                  <br />
-                  {/* Visit Site link */}
-                  {log.siteLink && (
-                    <a
-                      href={log.siteLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-flex items-center text-sm text-[#2E6F40] hover:text-[#68BA7F]"
-                    >
-                      <Globe className="h-4 w-4 mr-1" />
-                      Visit Site
-                    </a>
-                  )}
-                  {/* PDF link section added below each week */}
-                  <div className="flex items-center space-x-3 mt-2">
-                    <FileText className="h-5 w-5 text-[#68BA7F]" />
-                    <a
-                      href={log.pdf || `/pdf/${log.week.replace(/\s+/g, '').toLowerCase()}.pdf`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-[#253D2C] hover:underline"
-                    >
-                      {log.week} PDF
-                    </a>
                   </div>
                 </div>
               ))}
